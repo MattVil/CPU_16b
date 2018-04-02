@@ -1,0 +1,18 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity ControlUnit is
+port(
+	clk, reset, run: in std_logic;
+	irs, as, gs, done: out std_logic;
+	alu: out std_logic_vector(2 downto 0);
+	reg : out std_logic_vector(7 downto 0);
+	bus_sel: out std_logic_vector(3 downto 0));
+end ControlUnit;
+
+architecture behavior of ControlUnit is
+
+type state is (IR, DONE, MV, MVI, ALU0, ALU1, ALU2);
+signal actual_state, next_state;
+
+end architecture behavior;
