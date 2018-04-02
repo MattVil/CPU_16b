@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for CPU
-Mon Apr  2 17:02:58 2018
+Mon Apr  2 17:08:36 2018
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -106,7 +106,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +-------------+-----------------+------------+---------------------------------------------------------------+
 ; Fmax        ; Restricted Fmax ; Clock Name ; Note                                                          ;
 +-------------+-----------------+------------+---------------------------------------------------------------+
-; 1326.26 MHz ; 420.17 MHz      ; KEY[1]     ; limit due to minimum period restriction (max I/O toggle rate) ;
+; 1326.26 MHz ; 450.05 MHz      ; KEY[1]     ; limit due to minimum period restriction (max I/O toggle rate) ;
 +-------------+-----------------+------------+---------------------------------------------------------------+
 This panel reports FMAX for every clock in the design, regardless of the user-specified clock periods.  FMAX is only computed for paths where the source and destination registers or ports are driven by the same clock.  Paths of different clocks, including generated clocks, are ignored.  For paths between a clock and its inversion, FMAX is computed as if the rising and falling edges are scaled along with FMAX, such that the duty cycle (in terms of a percentage) is maintained. Altera recommends that you always use clock constraints and other slack reports for sign-off analysis.
 
@@ -146,7 +146,7 @@ No paths to report.
 +--------+--------+----------------------+
 ; Clock  ; Slack  ; End Point TNS        ;
 +--------+--------+----------------------+
-; KEY[1] ; -1.380 ; -6.380               ;
+; KEY[1] ; -1.222 ; -6.222               ;
 +--------+--------+----------------------+
 
 
@@ -183,7 +183,7 @@ No paths to report.
 +--------+--------------+----------------+------------------+--------+------------+-------------------------------------------+
 ; Slack  ; Actual Width ; Required Width ; Type             ; Clock  ; Clock Edge ; Target                                    ;
 +--------+--------------+----------------+------------------+--------+------------+-------------------------------------------+
-; -1.380 ; 1.000        ; 2.380          ; Port Rate        ; KEY[1] ; Rise       ; KEY[1]                                    ;
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; KEY[1] ; Rise       ; KEY[1]                                    ;
 ; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU0 ;
 ; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU0 ;
 ; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU1 ;
@@ -196,6 +196,10 @@ No paths to report.
 ; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.IR   ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]|combout                            ;
 ; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]|combout                            ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clk                 ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clk                 ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clkout              ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clkout              ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clkctrl|inclk[0]                   ;
 ; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clkctrl|inclk[0]                   ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clkctrl|outclk                     ;
@@ -218,8 +222,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; 3.129 ; 3.129 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; 3.129 ; 3.129 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; 4.243 ; 4.243 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; 4.243 ; 4.243 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -228,8 +232,8 @@ No paths to report.
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; -2.870 ; -2.870 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; -2.870 ; -2.870 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; -3.986 ; -3.986 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; -3.986 ; -3.986 ; Rise       ; KEY[1]          ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -238,8 +242,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -248,8 +252,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -288,7 +292,7 @@ No paths to report.
 +--------+--------+----------------------+
 ; Clock  ; Slack  ; End Point TNS        ;
 +--------+--------+----------------------+
-; KEY[1] ; -1.380 ; -6.380               ;
+; KEY[1] ; -1.222 ; -6.222               ;
 +--------+--------+----------------------+
 
 
@@ -325,7 +329,7 @@ No paths to report.
 +--------+--------------+----------------+------------------+--------+------------+-------------------------------------------+
 ; Slack  ; Actual Width ; Required Width ; Type             ; Clock  ; Clock Edge ; Target                                    ;
 +--------+--------------+----------------+------------------+--------+------------+-------------------------------------------+
-; -1.380 ; 1.000        ; 2.380          ; Port Rate        ; KEY[1] ; Rise       ; KEY[1]                                    ;
+; -1.222 ; 1.000        ; 2.222          ; Port Rate        ; KEY[1] ; Rise       ; KEY[1]                                    ;
 ; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU0 ;
 ; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU0 ;
 ; -0.500 ; 0.500        ; 1.000          ; High Pulse Width ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.ALU1 ;
@@ -338,6 +342,10 @@ No paths to report.
 ; -0.500 ; 0.500        ; 1.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; CPU:Proc|ControlUnit:cu|actual_state.IR   ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]|combout                            ;
 ; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]|combout                            ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clk                 ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clk                 ;
+; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clkout              ;
+; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clk_delay_ctrl|clkout              ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clkctrl|inclk[0]                   ;
 ; 0.500  ; 0.500        ; 0.000          ; Low Pulse Width  ; KEY[1] ; Rise       ; KEY[1]~clkctrl|inclk[0]                   ;
 ; 0.500  ; 0.500        ; 0.000          ; High Pulse Width ; KEY[1] ; Rise       ; KEY[1]~clkctrl|outclk                     ;
@@ -360,8 +368,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; 1.718 ; 1.718 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; 1.718 ; 1.718 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; 2.330 ; 2.330 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; 2.330 ; 2.330 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -370,8 +378,8 @@ No paths to report.
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; -1.597 ; -1.597 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; -1.597 ; -1.597 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; -2.210 ; -2.210 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; -2.210 ; -2.210 ; Rise       ; KEY[1]          ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -380,8 +388,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -390,8 +398,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -400,10 +408,10 @@ No paths to report.
 +------------------+-------+-------+----------+---------+---------------------+
 ; Clock            ; Setup ; Hold  ; Recovery ; Removal ; Minimum Pulse Width ;
 +------------------+-------+-------+----------+---------+---------------------+
-; Worst-case Slack ; 0.246 ; 0.215 ; N/A      ; N/A     ; -1.380              ;
-;  KEY[1]          ; 0.246 ; 0.215 ; N/A      ; N/A     ; -1.380              ;
-; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; -6.38               ;
-;  KEY[1]          ; 0.000 ; 0.000 ; N/A      ; N/A     ; -6.380              ;
+; Worst-case Slack ; 0.246 ; 0.215 ; N/A      ; N/A     ; -1.222              ;
+;  KEY[1]          ; 0.246 ; 0.215 ; N/A      ; N/A     ; -1.222              ;
+; Design-wide TNS  ; 0.0   ; 0.0   ; 0.0      ; 0.0     ; -6.222              ;
+;  KEY[1]          ; 0.000 ; 0.000 ; N/A      ; N/A     ; -6.222              ;
 +------------------+-------+-------+----------+---------+---------------------+
 
 
@@ -412,8 +420,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; 3.129 ; 3.129 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; 3.129 ; 3.129 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; 4.243 ; 4.243 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; 4.243 ; 4.243 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -422,8 +430,8 @@ No paths to report.
 +-----------+------------+--------+--------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise   ; Fall   ; Clock Edge ; Clock Reference ;
 +-----------+------------+--------+--------+------------+-----------------+
-; SW[*]     ; KEY[1]     ; -1.597 ; -1.597 ; Rise       ; KEY[1]          ;
-;  SW[17]   ; KEY[1]     ; -1.597 ; -1.597 ; Rise       ; KEY[1]          ;
+; SW[*]     ; KEY[1]     ; -2.210 ; -2.210 ; Rise       ; KEY[1]          ;
+;  SW[17]   ; KEY[1]     ; -2.210 ; -2.210 ; Rise       ; KEY[1]          ;
 +-----------+------------+--------+--------+------------+-----------------+
 
 
@@ -432,8 +440,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 6.067 ; 6.067 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 7.018 ; 7.018 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -442,8 +450,8 @@ No paths to report.
 +-----------+------------+-------+-------+------------+-----------------+
 ; Data Port ; Clock Port ; Rise  ; Fall  ; Clock Edge ; Clock Reference ;
 +-----------+------------+-------+-------+------------+-----------------+
-; LEDR[*]   ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
-;  LEDR[17] ; KEY[1]     ; 3.453 ; 3.453 ; Rise       ; KEY[1]          ;
+; LEDR[*]   ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
+;  LEDR[17] ; KEY[1]     ; 3.928 ; 3.928 ; Rise       ; KEY[1]          ;
 +-----------+------------+-------+-------+------------+-----------------+
 
 
@@ -499,7 +507,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon Apr  2 17:02:57 2018
+    Info: Processing started: Mon Apr  2 17:08:35 2018
 Info: Command: quartus_sta CPU -c CPU
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -522,10 +530,10 @@ Info (332146): Worst-case hold slack is 0.391
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case minimum pulse width slack is -1.380
+Info (332146): Worst-case minimum pulse width slack is -1.222
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -1.380        -6.380 KEY[1] 
+    Info (332119):    -1.222        -6.222 KEY[1] 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info: Analyzing Fast Model
 Info (332146): Worst-case setup slack is 0.621
@@ -539,16 +547,16 @@ Info (332146): Worst-case hold slack is 0.215
 Info (332140): No Recovery paths to report
 Info (332140): No Removal paths to report
 Critical Warning (332148): Timing requirements not met
-Info (332146): Worst-case minimum pulse width slack is -1.380
+Info (332146): Worst-case minimum pulse width slack is -1.222
     Info (332119):     Slack End Point TNS Clock 
     Info (332119): ========= ============= =====================
-    Info (332119):    -1.380        -6.380 KEY[1] 
+    Info (332119):    -1.222        -6.222 KEY[1] 
 Info (332001): The selected device family is not supported by the report_metastability command.
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 514 megabytes
-    Info: Processing ended: Mon Apr  2 17:02:58 2018
+    Info: Peak virtual memory: 503 megabytes
+    Info: Processing ended: Mon Apr  2 17:08:36 2018
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
