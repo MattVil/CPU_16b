@@ -1,0 +1,10 @@
+
+State Machine - |CPU_test|CPU:Proc|ControlUnit:cu|actual_state
+Name actual_state.ALU2 actual_state.ALU1 actual_state.ALU0 actual_state.MVI actual_state.MV actual_state.DON actual_state.IR 
+actual_state.IR 0 0 0 0 0 0 0 
+actual_state.DON 0 0 0 0 0 1 1 
+actual_state.MV 0 0 0 0 1 0 1 
+actual_state.MVI 0 0 0 1 0 0 1 
+actual_state.ALU0 0 0 1 0 0 0 1 
+actual_state.ALU1 0 1 0 0 0 0 1 
+actual_state.ALU2 1 0 0 0 0 0 1 
