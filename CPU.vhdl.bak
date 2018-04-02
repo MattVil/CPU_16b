@@ -1,0 +1,8 @@
+library IEEE;
+use ieee.std_logic_1164.all;
+
+entity CPU is 
+port(
+	d_in: in std_logic_vector(15 downto 0);
+	clk, reset, run: in std_logic;
+	done: out std_logic);
