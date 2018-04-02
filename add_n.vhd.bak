@@ -1,0 +1,34 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY add_n IS
+  GENERIC (SIZE : INTEGER := 16);
+  PORT(
+    A, B : IN std_logic_vector(SIZE-1 DOWNTO 0);
+    Cin : IN std_logic;
+    S : OUT std_logic_vector(SIZE-1 DOWNTO 0);
+    Cout : OUT std_logic
+  );
+END add_n;
+
+ARCHITECTURE behavior OF add_n IS
+
+  COMPONENT add_2v1s
+    PORT(
+      A, B, Cin : IN std_logic;
+      S, Cout : OUT std_logic
+    );
+  END COMPONENT;
+
+  SIGNAL tmp: std_logic_vector(SIZE-1 DOWNTO 0);
+
+BEGIN
+  tmp(0) <= Cin;
+  Cout <= tmp(16-1);
+
+  ADD_LOOP : for i in 0 to (SIZE-1)
+  GENERATE
+    ADD : add_2v1 PORT MAP(A => A(i), B => B(i), Cin => tmp(i), s => S(i), Cout => tmp(i+1));
+  END GENERATE;
+
+END behavior;

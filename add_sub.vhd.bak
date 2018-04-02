@@ -1,0 +1,62 @@
+LIBRARY ieee;
+USE ieee.std_logic_1164.all;
+
+ENTITY add_sub IS
+PORT(
+	A,B : IN std_logic_vector(16-1 DOWNTO 0);
+	Sel: IN std_logic_vector(2 DOWNTO 0);
+	S: OUT std_logic_vector(16-1 DOWNTO 0);
+	Cout : OUT std_logic
+);
+END add_sub;
+
+ARCHITECTURE behavior OF add_sub IS
+
+  Component add_n IS
+	GENERIC (SIZE : INTEGER := 16);
+  PORT(
+    A, B : IN std_logic_vector(SIZE-1 DOWNTO 0);
+    Cin : IN std_logic;
+    S : OUT std_logic_vector(SIZE-1 DOWNTO 0);
+    Cout : OUT std_logic
+  );
+  END Component;
+
+  Component substractor_nbits IS
+  GENERIC(SIZE : positive := 4);
+  PORT(
+    A,B : IN std_logic_vector(0 TO SIZE-1);
+    Cin : IN std_logic;
+    S : OUT std_logic_vector(0 TO SIZE-1);
+    Cout : OUT std_logic
+  );
+  END Component;
+
+  SIGNAL in1, in2 : std_logic_vector(SIZE-1 DOWNTO 0);
+  SIGNAL addOut, subOut, multOut : std_logic_vector(SIZE-1 DOWNTO 0);
+	SIGNAL Cadd, Csub : std_logic;
+
+BEGIN
+
+  multOut <= "0000000000000000";
+	add : add_n GENERIC MAP(SIZE => 16) PORT MAP(A=>A, B=>B, Cin=>'0', S=>addOut, Cout=>Cadd);
+	sub : substractor_nbits generic MAP(16) PORT MAP(A=>A, B=>B, Cin=>'0', S=>subOut, Cout=>Csub);
+
+  PROCESS(A, B, addOut, subOut, multOut)
+	BEGIN
+		CASE(Sel) IS
+			WHEN "000" => S <= addOut; --ADD
+			--WHEN "000" => Cout <= Cadd;
+			WHEN "001" => S <= subOut; --SUB
+			--WHEN "001" => Cout <= Csub;
+			WHEN "010" => S <= multOut; --MULT
+			WHEN "011" => S <= A and B; --AND
+			WHEN "100" => S <= A or B; --OR
+			WHEN "101" => S <= A xor B; --XOR
+			WHEN "110" => S <= not A; --NOT
+			WHEN "111" => S <= A; --MOVE
+			WHEN OTHERS => S <= "0000000000000000";
+		END CASE;
+	END PROCESS;
+
+END behavior;

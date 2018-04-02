@@ -1,0 +1,64 @@
+Library
+IEEE;
+Use
+IEEE.std_logic_1164.all;
+Entity
+regnbits
+is 
+generic
+(N 
+: integer 
+= 16
+);
+port
+( D : in 
+std_logic_vector
+(
+N
+-
+1
+downto
+0);
+Resetn
+, CLK : in 
+std_logic
+;
+Q 
+: 
+out 
+std_logic_vector
+(
+N
+-
+1
+downto
+0
+));
+End
+entity
+;
+Architecture 
+Behavior
+of 
+regnbits
+is
+process
+(CLK)
+begin 
+if  
+rising_edge
+(CLK) 
+then 
+if 
+Resetn
+= ‘0’ 
+then
+Q 
+<= 
+(others=> ‘0’);
+else
+Q <= D;
+end if;
+end if;
+end process;
+End architecture
